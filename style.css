@@ -1,0 +1,146 @@
+/* Add your CSS here */
+
+/*
+  Set a darker blue gradient background for the body to match a modern Intel style
+*/
+body {
+  /* Darker blue gradient background */
+  background: linear-gradient(135deg, #1a237e 0%, #1565c0 100%);
+  min-height: 100vh; /* Ensure background covers full page */
+  font-family: 'Segoe UI', Arial, sans-serif; /* Modern, readable font */
+  margin: 0;
+  padding: 0;
+}
+
+/* Optional: Give the main section a white card look for contrast */
+section {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 64, 128, 0.08);
+  padding: 24px 0;
+  margin: 32px auto;
+  width: 95%;
+  max-width: 1400px;
+}
+
+/*
+  Use Flexbox to align all .timeStamp divs horizontally
+  The section element is the container for the timeline cards
+*/
+section {
+  display: flex; /* Enables Flexbox layout */
+  flex-direction: row; /* Aligns children in a row (horizontally) */
+  gap: 16px; /* Adds space between the cards */
+  overflow-x: auto; /* Allows horizontal scrolling if needed */
+  padding: 16px 0; /* Adds some space above and below the cards */
+}
+
+/* Optional: Make each card a little narrower for better fit */
+.timeStamp {
+  flex: 0 0 250px; /* Each card is 250px wide and does not grow or shrink */
+  background: #268bf0; /* Slightly lighter blue for card background */
+  border-radius: 8px; /* Rounded corners */
+  padding: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  position: relative; /* Needed for absolute positioning of child */
+}
+
+/* Ensure images fill the card and maintain aspect ratio */
+.timeStamp img {
+  display: block; /* Removes small gaps below images */
+  width: 100%;    /* Makes image fill the card width */
+  height: auto;   /* Keeps image aspect ratio */
+}
+
+/*
+  Make all images with the class timeStampImg exactly 250x100 pixels
+*/
+.timeStampImg {
+  width: 250px;
+  height: 100px;
+  object-fit: cover; /* Ensures the image fills the area without stretching */
+  display: block;
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+/*
+  Hide the cardText by default, show it when hovering over the image in the same timeStamp card
+  (Restoring hover functionality: only show overlay when hovering the image, not the whole card)
+*/
+.timeStamp .cardText {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.6s ease; /* Smooth fade-in */
+  pointer-events: none; /* Prevent interaction when hidden */
+}
+
+/* Only show cardText when hovering the image */
+.timeStamp img:hover + .cardText,
+.timeStamp img:focus + .cardText {
+  display: flex;
+  opacity: 1; /* Fade in when shown */
+  pointer-events: auto; /* Allow interaction when visible */
+}
+
+/* Show cardText with fade-in when hovering the whole card (timeStamp div) */
+.timeStamp:hover .cardText,
+.timeStamp:focus-within .cardText {
+  opacity: 1; /* Fade in when shown */
+  pointer-events: auto; /* Allow interaction when visible */
+}
+
+p {
+  text-align: center;
+}
+
+#timeStampNote {
+  margin-top: 8px;
+}
+
+.timeline {
+  background: #2b2b2b
+}
+/*
+  On small screens, stack the timeline cards vertically
+  This uses a media query for screens 600px wide or less
+*/
+@media (max-width: 600px) {
+  section {
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center;    /* Center cards horizontally */
+  }
+  .timeStamp {
+    width: 90%; /* Make cards take most of the screen width */
+    max-width: 350px; /* Optional: limit max width for readability */
+  }
+}
+
+header {
+  background: transparent;
+  text-align: center;
+  padding: 32px 0 0 0;
+}
+
+/* Make all text outside of the .timeline section white */
+body, body > header, body > header *, body > p:not(.timeline *), body > section:not(.timeline) {
+  color: #fff;
+}
+
+/* But keep text inside .timeline section (the cards) default (black) */
+.timeline, .timeline * {
+  color: #222;
+}
