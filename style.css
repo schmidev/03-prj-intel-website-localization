@@ -107,8 +107,10 @@ p {
   text-align: center;
 }
 
+/* Make the email label and #timeStampNote text white */
+#subscribeForm label,
 #timeStampNote {
-  margin-top: 8px;
+  color: white;
 }
 
 .timeline {
@@ -143,4 +145,24 @@ body, body > header, body > header *, body > p:not(.timeline *), body > section:
 /* But keep text inside .timeline section (the cards) default (black) */
 .timeline, .timeline * {
   color: #222;
+}
+
+/* Make header text white */
+header, header h1, header p, header img {
+  color: white;
+}
+
+/* Make the subscribe button the #268bf0 color */
+#subscribeForm button {
+  background-color: #268bf0;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#subscribeForm button:hover {
+  background-color: #1565c0; /* Slightly darker on hover for feedback */
 }
