@@ -103,6 +103,32 @@ section {
   pointer-events: auto; /* Allow interaction when visible */
 }
 
+/* Prevent the cardText overlay from showing when hovering the Learn More button
+  by stopping pointer events from bubbling up from the button to the .timeStamp card
+*/
+.timeStamp button {
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+/* When hovering the button, keep the overlay hidden */
+.timeStamp:hover .cardText,
+.timeStamp:focus-within .cardText {
+  opacity: 1;
+  pointer-events: auto;
+}
+.timeStamp button:hover ~ .cardText,
+.timeStamp button:focus ~ .cardText {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Also, make sure the button is above the overlay */
+.timeStamp {
+  position: relative;
+}
+
 p {
   text-align: center;
 }
